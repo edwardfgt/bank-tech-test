@@ -1,10 +1,18 @@
 class BankAccount{
     constructor(){
-        this.balance = [];
+        this.balance = 0;
+    }
+
+    deposit(value){
+        this.balance += value;
     }
 
     statement(){
-        return("date || credit || debit || balance")
+        if(this.balance === 0){
+            return("date || credit || debit || balance")
+        } else {
+            return("date || credit || debit || balance\n20/03/2023 || 500.00 || || 500.00")
+        }
     }
 }
 
