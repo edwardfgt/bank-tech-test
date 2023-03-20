@@ -1,41 +1,53 @@
 const BankAccount = require('./bankAccount');
 
 describe('BankAccount', () => {
-    it("returns statement headers when statement is printed with 0 transactions", () => {
-        const bankAccount = new BankAccount();
-        expect(bankAccount.statement()).toEqual("date || credit || debit || balance");
-    })
-
-    it("returns statement with deposit and balance after user deposits money into the account", () => {
-        const bankAccount = new BankAccount();
-        bankAccount.deposit(5000)
-        expect(bankAccount.statement()).toContain("20/03/2023 || 500.00 || || 500.00");
-    })
-
-    it("returns the starting balance as 0", () => {
-        const bankAccount = new BankAccount();
-        expect(bankAccount.getBalance()).toEqual(0);
-    })
-
-    it("returns the balance after the user makes deposits", () => {
-        const bankAccount = new BankAccount();
-        bankAccount.deposit(100);
-        expect(bankAccount.getBalance()).toEqual(100);
-        bankAccount.deposit(500);
-        expect(bankAccount.getBalance()).toEqual(600);
-    })
+    describe('it returns the bank account balance', () => {
+        it("returns the starting balance as 0", () => {
+            const bankAccount = new BankAccount();
+            expect(bankAccount.getBalance()).toEqual(0);
+        })
     
-    it("returns the balance after the user makes withdrawals", () => {
-        const bankAccount = new BankAccount();
-        bankAccount.deposit(1000);
-        bankAccount.withdraw(500);
-        expect(bankAccount.getBalance()).toEqual(500);
+        it("returns the balance after the user makes deposits", () => {
+            const bankAccount = new BankAccount();
+            bankAccount.deposit(100);
+            expect(bankAccount.getBalance()).toEqual(100);
+            bankAccount.deposit(500);
+            expect(bankAccount.getBalance()).toEqual(600);
+        })
+        
+        it("returns the balance after the user makes withdrawals", () => {
+            const bankAccount = new BankAccount();
+            bankAccount.deposit(1000);
+            bankAccount.withdraw(500);
+            expect(bankAccount.getBalance()).toEqual(500);
+        })
+    
+        it("prompts the user they cannot withdraw money if balance will fall below 0", () => {
+            const bankAccount = new BankAccount();
+            bankAccount.deposit(1000);
+            expect(bankAccount.withdraw(1100)).toEqual("Not enough money");
+            expect(bankAccount.getBalance()).toEqual(1000);
+        })
     })
 
-    it("prompts the user they cannot withdraw money if balance will fall below 0", () => {
-        const bankAccount = new BankAccount();
-        bankAccount.deposit(1000);
-        expect(bankAccount.withdraw(1100)).toEqual("Not enough money");
-        expect(bankAccount.getBalance()).toEqual(1000);
+    describe("it stores all deposits in array of objects", () => {
+        it("stores a singular deposit in the deposits array", () => {
+            const bankAccount = new BankAccount();
+            expect(bankAccount.getDeposits()).toEqual([]);
+            expect(bankAccount.getDeposits()).toBeInstanceOf(Array);
+        })
+    })
+
+    describe("it returns a statement with users transactions", () => {
+        it("returns statement headers when statement is printed with 0 transactions", () => {
+            const bankAccount = new BankAccount();
+            expect(bankAccount.statement()).toEqual("date || credit || debit || balance");
+        })
+    
+        it("returns statement with deposit and balance after user deposits money into the account", () => {
+            const bankAccount = new BankAccount();
+            bankAccount.deposit(5000);
+            expect(bankAccount.statement()).toContain("20/03/2023 || 500.00 || || 500.00");
+        })
     })
 })

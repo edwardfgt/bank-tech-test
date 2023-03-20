@@ -1,10 +1,15 @@
 class BankAccount{
     constructor(){
         this.balance = 0;
+        this.deposits = [];
     }
 
     getBalance(){
         return this.balance;
+    }
+
+    getDeposits(){
+        return this.deposits;
     }
 
     deposit(value){
