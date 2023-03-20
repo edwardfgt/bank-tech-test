@@ -24,4 +24,11 @@ describe('BankAccount', () => {
         bankAccount.deposit(500);
         expect(bankAccount.getBalance()).toEqual(600);
     })
+    
+    it("returns the balance after the user makes withdrawals", () => {
+        const bankAccount = new BankAccount();
+        bankAccount.deposit(1000);
+        bankAccount.withdraw(500);
+        expect(bankAccount.getBalance()).toEqual(500);
+    })
 })

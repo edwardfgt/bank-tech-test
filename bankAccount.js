@@ -11,6 +11,10 @@ class BankAccount{
         this.balance += value;
     }
 
+    withdraw(value){
+        this.balance -= value;
+    }
+
     statement(){
         if(this.balance === 0){
             return("date || credit || debit || balance")
