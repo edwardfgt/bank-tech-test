@@ -31,4 +31,11 @@ describe('BankAccount', () => {
         bankAccount.withdraw(500);
         expect(bankAccount.getBalance()).toEqual(500);
     })
+
+    it("prompts the user they cannot withdraw money if balance will fall below 0", () => {
+        const bankAccount = new BankAccount();
+        bankAccount.deposit(1000);
+        expect(bankAccount.withdraw(1100)).toEqual("Not enough money");
+        expect(bankAccount.getBalance()).toEqual(1000);
+    })
 })

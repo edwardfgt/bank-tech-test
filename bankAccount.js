@@ -12,7 +12,11 @@ class BankAccount{
     }
 
     withdraw(value){
-        this.balance -= value;
+        if(this.balance - value < 0){
+            return("Not enough money")
+        } else {
+            this.balance -= value;
+        }
     }
 
     statement(){
