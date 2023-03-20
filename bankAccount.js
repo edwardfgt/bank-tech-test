@@ -1,15 +1,15 @@
 class BankAccount{
     constructor(){
         this.balance = 0;
-        this.deposits = [];
+        this.statements = [];
     }
 
     getBalance(){
         return this.balance;
     }
 
-    getDeposits(){
-        return this.deposits;
+    getStatement(){
+        return this.statements;
     }
 
     deposit(value){
@@ -24,7 +24,7 @@ class BankAccount{
         }
     }
 
-    statement(){
+    formatStatement(){
         if(this.balance === 0){
             return("date || credit || debit || balance")
         } else {
