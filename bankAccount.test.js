@@ -39,19 +39,15 @@ describe('BankAccount', () => {
 
         it("returns an array containing one object once one deposit has been made", () => {
             const bankAccount = new BankAccount();
-            //bankAccount.deposit(1000);
             bankAccount.addToStatements({date: "20/03/2023", type: "deposit", value: 1000, balance: 1000});
             expect(bankAccount.getStatement()).toEqual([{date: "20/03/2023", type: "deposit", value: 1000, balance: 1000}]);
-            //{date: "20/03/2023", type: "deposit", value: 1000, balance: 1000}
         })
 
         it("returns an array containing two objects once one deposit and one withdrawal has been made", () => {
             const bankAccount = new BankAccount();
-            //bankAccount.deposit(1000);
             bankAccount.addToStatements({date: "20/03/2023", type: "deposit", value: 1000, balance: 1000});
             bankAccount.addToStatements({date: "21/03/2023", type: "withdrawal", value: 800, balance: 200});
             expect(bankAccount.getStatement().length).toEqual(2);
-            //{date: "20/03/2023", type: "deposit", value: 1000, balance: 1000}
         })
     })
 

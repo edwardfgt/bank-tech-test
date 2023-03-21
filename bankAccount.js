@@ -18,16 +18,19 @@ class BankAccount{
         this.addToStatements(newDeposit);
     }
 
-    addToStatements(object){
-        this.statements.push(object);
-    }
 
     withdraw(value){
         if(this.balance - value < 0){
             return("Not enough money")
         } else {
             this.balance -= value;
+            let newWithdrawal = {date: Date.now(), type: "withdrawal", value: "value", balance: this.balance - value};
+            this.addToStatements(newWithdrawal);
         }
+    }
+
+    addToStatements(object){
+        this.statements.push(object);
     }
 
     formatStatement(){
