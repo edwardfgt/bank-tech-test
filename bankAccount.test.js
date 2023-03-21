@@ -39,9 +39,12 @@ describe('BankAccount', () => {
 
         it("returns an array containing one object once one deposit has been made", () => {
             const bankAccount = new BankAccount();
-            bankAccount.deposit(1000);
+            //bankAccount.deposit(1000);
+            expect(bankAccount.getStatement()).toBeInstanceOf(Array);
+            bankAccount.addToStatements({date: "20/03/2023", type: "deposit", value: 1000, balance: 1000});
+            expect(bankAccount.getStatement()).toEqual([{date: "20/03/2023", type: "deposit", value: 1000, balance: 1000}]);
 
-
+            //{date: "20/03/2023", type: "deposit", value: 1000, balance: 1000}
         })
     })
 

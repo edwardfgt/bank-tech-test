@@ -14,6 +14,12 @@ class BankAccount{
 
     deposit(value){
         this.balance += value;
+        let newDeposit = {date: Date.now(), type: "deposit", value: "value", balance: this.balance + value};
+        this.addToStatements(newDeposit);
+    }
+
+    addToStatements(object){
+        this.statements.push(object);
     }
 
     withdraw(value){
