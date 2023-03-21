@@ -60,14 +60,16 @@ describe('BankAccount', () => {
         it("returns statement with deposit and balance after user deposits money into the account", () => {
             const bankAccount = new BankAccount();
             bankAccount.deposit(5000);
-            expect(bankAccount.formatStatement()).toEqual("date || credit || debit || balance\n21/03/23 || 5000 || || 5000");
+            console.log("statements ",bankAccount.getStatement());
+            expect(bankAccount.formatStatement()).toEqual("date || credit || debit || balance\n21/03/23 || 5000.00 || || 5000.00");
         })
 
         it("returns statement with deposit and withdrawal balance after user deposits and withdraws money from the account", () => {
             const bankAccount = new BankAccount();
-            bankAccount.deposit(5000);
-            bankAccount.withdraw(250);
-            expect(bankAccount.formatStatement()).toEqual("date || credit || debit || balance\n21/03/23 || || 250 || 4750\n21/03/23 || 5000 || || 5000");
+            bankAccount.addToStatements({date: "20/03/23", type: "deposit", value: 5000, balance: 5000});
+            bankAccount.addToStatements({date: "20/03/23", type: "withdrawal", value: 250, balance: 4750});
+            console.log("statements ",bankAccount.getStatement());
+            expect(bankAccount.formatStatement()).toEqual("date || credit || debit || balance\n20/03/23 || || 250.00 || 4750.00\n20/03/23 || 5000.00 || || 5000.00");
         })
     })
 })

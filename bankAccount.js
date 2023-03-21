@@ -2,7 +2,6 @@ class BankAccount{
     constructor(){
         this.balance = 0;
         this.statements = [];
-        this.header = "date || credit || debit || balance"
     }
 
     getBalance(){
@@ -16,7 +15,6 @@ class BankAccount{
     deposit(value){
         this.balance += value;
         let newDeposit = {date: this.formatDate(), type: "deposit", value: value, balance: this.balance};
-        console.log("new deposit ", newDeposit)
         this.addToStatements(newDeposit);
     }
 
@@ -36,7 +34,6 @@ class BankAccount{
         } else {
             this.balance -= value;
             let newWithdrawal = {date: this.formatDate(), type: "withdrawal", value: value, balance: this.balance};
-            console.log("new withdrawal ", newWithdrawal)
             this.addToStatements(newWithdrawal);
         }
     }
@@ -46,18 +43,19 @@ class BankAccount{
     }
 
     formatStatement(){
-        if(this.balance === 0){
+        if(this.statements.length === 0){
             return("date || credit || debit || balance")
         } else {
             let finalStatement = "date || credit || debit || balance"
-            this.statements.reverse().forEach(statement => {
-                console.log(statement)
+            const reversedStatements = [...this.statements].reverse();
+            reversedStatements.forEach(statement => {
                 if(statement.type === "deposit"){
-                    finalStatement += `\n${statement.date} || ${statement.value} || || ${statement.balance}`
-                } else {
-                    finalStatement += `\n${statement.date} || || ${statement.value} || ${statement.balance}`
+                    finalStatement += `\n${statement.date} || ${statement.value.toFixed(2)} || || ${statement.balance.toFixed(2)}`
+                } else if(statement.type === "withdrawal") {
+                    finalStatement += `\n${statement.date} || || ${statement.value.toFixed(2)} || ${statement.balance.toFixed(2)}`
                 }
             })
+            console.log("finalstatement is ", finalStatement)
             return finalStatement;
         }
     }
