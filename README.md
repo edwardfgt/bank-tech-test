@@ -70,3 +70,23 @@ This project uses Jest for testing. To run all tests, run the following command
 ```
 jest
 ```
+
+
+## Example
+
+Here is an example of how you could run this program.
+```
+const BankAccount = require('./bankAccount')
+let bankAccount = new BankAccount();
+bankAccount.deposit(100);
+bankAccount.deposit(500);
+bankAccount.withdraw(50);
+bankAccount.getStatement();
+```
+Expected return
+```
+date || credit || debit || balance
+22/03/23 || || 50.00 || 550.00
+22/03/23 || 500.00 || || 600.00
+22/03/23 || 100.00 || || 100.00
+```

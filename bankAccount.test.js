@@ -59,7 +59,7 @@ describe('BankAccount', () => {
     
         it("returns statement with deposit and balance after user deposits money into the account", () => {
             const bankAccount = new BankAccount();
-            bankAccount.deposit(5000);
+            bankAccount.addToStatements({date: "21/03/23", type: "deposit", value: 5000, balance: 5000});
             console.log("statements ",bankAccount.getStatement());
             expect(bankAccount.formatStatement()).toEqual("date || credit || debit || balance\n21/03/23 || 5000.00 || || 5000.00");
         })

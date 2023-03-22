@@ -23,10 +23,8 @@ class BankAccount{
         const day = today.getDate().toString().padStart(2, '0');
         const month = (today.getMonth() + 1).toString().padStart(2, '0');
         const year = today.getFullYear().toString().slice(-2);
-        let formattedDate = `${day}/${month}/${year}`;
-        return formattedDate;
+        return `${day}/${month}/${year}`;
     }
-
 
     withdraw(value){
         if(this.balance - value < 0){
@@ -55,7 +53,7 @@ class BankAccount{
                     finalStatement += `\n${statement.date} || || ${statement.value.toFixed(2)} || ${statement.balance.toFixed(2)}`
                 }
             })
-            console.log("finalstatement is ", finalStatement)
+            console.log(finalStatement)
             return finalStatement;
         }
     }
