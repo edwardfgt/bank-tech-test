@@ -90,3 +90,6 @@ date || credit || debit || balance
 22/03/23 || 500.00 || || 600.00
 22/03/23 || 100.00 || || 100.00
 ```
+<img width="366" alt="Screenshot 2023-03-22 at 12 43 07" src="https://user-images.githubusercontent.com/90358655/226909155-91df1962-b44b-4972-a7b6-dab7bca6bbed.png">
+
+
